@@ -19,11 +19,16 @@
   "license": "MIT",
   "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
     "classnames": "^2.2.6",
+    "install": "^0.12.1",
+    "lodash": "^4.17.10",
     "normalize.css": "^7.0.0",
+    "npm": "^6.2.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
