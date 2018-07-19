@@ -1,7 +1,7 @@
 import "../../../styles/base/common/logo.sass"
 
 import React from 'react'
-import classNames 
+import classNames from 'classnames'
 
 const Logo = (className) => {
     return (
