@@ -3,6 +3,7 @@ import {map} from 'lodash';
 import ListingPageDetailPod from "../../components/ListingPageDetailPod/ListingPageDetailPod";
 import {connect} from "react-redux";
 import {getListings} from "../../actions/carListings/actions";
+import carListingHelper from "../../storeHelper/carListingHelper";
 
 class CarListingContainer extends Component {
   state = {
@@ -34,9 +35,10 @@ class CarListingContainer extends Component {
   }
 }
 function mapStateToProps(state) {
-  const carListings = state.carListings.carListings.data.vehicles;
-  const isGettingCarListings = state.carListings.isGetting;
+  const carListings = carListingHelper(state).getVehicles;
+  const isGettingCarListings = carListingHelper(state).isGettingCarListings
   console.log('==> ', carListings);
+  
   return {carListings, isGettingCarListings}
 }
 function mapDispatchToProps(dispatch) {
