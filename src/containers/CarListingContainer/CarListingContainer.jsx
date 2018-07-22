@@ -1,37 +1,29 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {map} from 'lodash';
 import ListingPageDetailPod from "../../components/ListingPageDetailPod/ListingPageDetailPod";
-
+import {connect} from "react-redux";
+import {getListings} from "../../actions/carListings/actions";
 
 class CarListingContainer extends Component {
   state = {
-    currentPage: null,
-    filteredCount: null,
-    pageCount: null,
-    qualifyingCount: null,
-    vehicles: []
+    currentPage: 1,
   };
   
   componentDidMount() {
-    this.loadData(1)
+    this.loadData()
   };
-  loadData = (page) => {
-    axios.get(`https://private-f14e4-interviewapi3.apiary-mock.com/vehicles?page=${page}`)
-      .then(res => {
-        const data = res.data.data;
-        this.setState({ currentPage: data.current_page, filteredCount: data.filtered_count, pageCount: data.page_count, qualifyingCount: data.qualifying_count, vehicles: data.vehicles});
-      }).catch(e => {
-      console.log(e)
-    })
+  loadData = () => {
+    const {dispatch} = this.props;
+    const {currentPage} = this.state;
+    dispatch(getListings(1))
   };
   
   
   render() {
-    const {vehicles, currentPage, filteredCount, pageCount, qualifyingCount  } = this.state;
-    const vehicaleDetailPodXml = map(vehicles, (vehicle) => {
+    const {carListings} = this.props;
+    const vehicaleDetailPodXml = map(carListings, (vehicle, i) => {
       return(
-        <ListingPageDetailPod vehicle={vehicle} />
+        <ListingPageDetailPod vehicle={vehicle} key={i}/>
       )
     });
     return(
@@ -41,5 +33,15 @@ class CarListingContainer extends Component {
     )
   }
 }
+function mapStateToProps(state) {
+  const carListings = state.carListings.carListings.data.vehicles;
+  const isGettingCarListings = state.carListings.isGetting;
+  console.log('==> ', carListings);
+  return {carListings, isGettingCarListings}
+}
+function mapDispatchToProps(dispatch) {
+  return {dispatch}
+}
 
-export default CarListingContainer;
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarListingContainer);
