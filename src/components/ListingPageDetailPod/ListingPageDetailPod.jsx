@@ -1,19 +1,47 @@
 import React from 'react';
 import 'styles/base/components/ListingPageDetailPod.sass';
 import {head} from 'lodash';
+import vehicleHelper from "../../model/vehicleHelper";
+import Checkbox from "../../common/CheckBox/CheckBox";
+import PriceSlider from "../../common/PriceSlider/PriceSlider";
 
 const ListingPageDetailPod = (props) => {
+  const {vehicle} = props;
   
-  const {image_location_list, model, make, mileage} = props.vehicle;
-  const primaryImage = head(image_location_list);
+  const model = vehicleHelper(vehicle).model;
+  const make = vehicleHelper(vehicle).make;
+  const mileage = vehicleHelper(vehicle).mileage;
+  const year = vehicleHelper(vehicle).year;
+  const primaryImage = vehicleHelper(vehicle).primaryImage;
+  const vin = vehicleHelper(vehicle).vin;
+  const condition = vehicleHelper(vehicle).condition;
   
   return(
     <div className='listing-page-detail-pod'>
-      <input type="checkbox"/>
-      <img src={primaryImage} alt=""/>
-      <div className="model">{model}</div>
-      <div className="make">{make}</div>
-      <div className="mileage">{mileage}</div>
+      <div className='image-container'>
+        <Checkbox handleClick={()=> {}}/>
+        <img src={primaryImage} alt=""/>
+      </div>
+      <div className="stats">
+        <div className="title">{year} {make} {model}</div>
+        {
+          vin
+          ? <div className="vin">VIN: {vin}</div>
+          : null
+        }
+        {
+          mileage
+          ? <div className="mileage">MILES: {mileage}</div>
+          : null
+        }
+        {
+          condition
+          ? <div className="condition">CONDITION: {condition}</div>
+          : null
+  
+        }
+        </div>
+      <PriceSlider listPrice={15000} minPrice={12680}/>
     </div>
   )
 };
