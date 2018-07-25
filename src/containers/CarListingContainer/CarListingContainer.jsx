@@ -6,40 +6,52 @@ import {getListings} from "../../actions/carListings/actions";
 import carListingHelper from "../../storeHelper/carListingHelper";
 import Pagination from "../../common/Pagination/Pagination";
 import RoutesService from "../../RoutesService";
-import {push} from "react-router-redux"
 import { withRouter } from 'react-router-dom'
+import BasicLoadingView from "../../common/BasicLoadingView/BasicLoadingView";
 
 class CarListingContainer extends Component {
   state = {
-    currentPage: 1
-  }
+    currentPage: 1,
+    loading: true
+  };
   
   componentDidMount() {
     this.loadData()
   };
-  loadData = () => {
+  
+  loadData = async () => {
     const {dispatch} = this.props;
-    dispatch(getListings(1))
+    
+    await dispatch(getListings(1));
+    this.setState({loading: false});
   };
+  
   handleNextClick = () => {
     const {dispatch} = this.props;
     const {currentPage} = this.state;
     const nextPage = currentPage + 1;
     this.setState({currentPage: nextPage}, () => dispatch(getListings(nextPage)));
   };
+  
   handleBackClick = () => {
     const {currentPage} = this.state;
     const prevPage = currentPage - 1;
     
     this.setState({currentPage: prevPage});
   };
+  
   handleVehicleClick = (vin) => {
     this.props.history.push(RoutesService.vinPath(vin))
   };
+  
   render() {
     const {carListings, pageCount} = this.props;
+    const {loading} = this.state;
     const {currentPage} = this.state;
     
+    if(loading){
+      return <BasicLoadingView/>
+    }
     const vehicaleDetailPodXml = map(carListings, (vehicle, i) => {
       return(
         <ListingPageDetailPod vehicle={vehicle} key={i} handleVehicleClick={this.handleVehicleClick}/>
@@ -48,7 +60,7 @@ class CarListingContainer extends Component {
     return(
       <div className='car-lsiting-container'>
         {vehicaleDetailPodXml}
-        {/*each call returns same json*/}
+        {/*TODO each call returns same json*/}
         <Pagination currentPage={currentPage} pageCount={pageCount} handleBackClick={this.handleBackClick} handleNextClick={this.handleNextClick} />
       </div>
     )

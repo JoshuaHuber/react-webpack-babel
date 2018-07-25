@@ -8,7 +8,7 @@ import carDetailHelper from "../../storeHelper/carDetailHelper";
 
 class CarDetailPage extends Component {
   state = {
-    loading: false
+    loading: true
   }
   componentDidMount (){
     this.loadData();
@@ -16,7 +16,6 @@ class CarDetailPage extends Component {
   loadData = async () => {
     const {dispatch, vin} = this.props;
     
-    this.setState({loading: true});
     await dispatch(getCarDetails(vin));
     this.setState({loading: false});
   };
@@ -27,6 +26,7 @@ class CarDetailPage extends Component {
     
     if(loading) return <BasicLoadingView/>
     
+    if(!vehicle) return <div className='none-found'>no vehicle found</div>
     //TODO code Detail component
     
     return(
@@ -39,6 +39,7 @@ class CarDetailPage extends Component {
 function mapStateToProps(state, ownProps) {
   const vin = get(ownProps, "match.params.vin");
   const vehicle = carDetailHelper(state).getVehicleDetails;
+  console.log(state, vehicle)
   return {vin, vehicle}
 }
 function mapDispatchToProps(dispatch) {
