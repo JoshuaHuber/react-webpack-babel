@@ -16,10 +16,14 @@ function getVehicles(state) {
 function isGettingCarListings(state) {
   return get(getCarListings(state), 'isGetting')
 }
+function getPageCount(state) {
+  return get(getData(state), 'page_count')
+}
 
 export default function carListingHelper(state) {
   return{
     getVehicles: getVehicles(state),
-    isGettingCarListings: isGettingCarListings(state)
+    isGettingCarListings: isGettingCarListings(state),
+    getPageCount: getPageCount(state)
   };
 }
