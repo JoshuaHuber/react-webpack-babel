@@ -6,14 +6,11 @@ export const ACTION_TYPES = {
 }
 
 function didBeginGetting () {
-  console.log(ACTION_TYPES.DID_BEGIN_GETTING)
   return{
     type: ACTION_TYPES.DID_BEGIN_GETTING
   }
 }
 function didEndGetting (carListings) {
-  console.log(ACTION_TYPES.DID_END_GETTING)
-  
   return{
     type: ACTION_TYPES.DID_END_GETTING,
     carListings: carListings

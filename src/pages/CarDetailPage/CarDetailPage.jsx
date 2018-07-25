@@ -4,6 +4,7 @@ import {get} from "lodash";
 import {getCarDetails} from "../../actions/carDetails/actions";
 import BasicLoadingView from "../../common/BasicLoadingView/BasicLoadingView";
 import ListingPageDetailPod from "../../components/ListingPageDetailPod/ListingPageDetailPod";
+import carDetailHelper from "../../storeHelper/carDetailHelper";
 
 class CarDetailPage extends Component {
   state = {
@@ -25,9 +26,11 @@ class CarDetailPage extends Component {
     const {loading} = this.state;
     
     if(loading) return <BasicLoadingView/>
+    
+    //TODO code Detail component
+    
     return(
       <div className='car-detail-page'>
-        <div>{vin}</div>
         <ListingPageDetailPod vehicle={vehicle}/>
       </div>
     )
@@ -35,10 +38,8 @@ class CarDetailPage extends Component {
 }
 function mapStateToProps(state, ownProps) {
   const vin = get(ownProps, "match.params.vin");
-  console.log('CarDetailPage', state);
-  
-  
-  return {vin}
+  const vehicle = carDetailHelper(state).getVehicleDetails;
+  return {vin, vehicle}
 }
 function mapDispatchToProps(dispatch) {
   return {dispatch}

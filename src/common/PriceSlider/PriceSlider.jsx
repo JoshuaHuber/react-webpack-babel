@@ -19,7 +19,6 @@ class PriceSlider extends Component {
 }
   
   handleChangeStart = () => {
-    console.log('Change event started')
   };
   
   handleChange = value => {
@@ -29,7 +28,6 @@ class PriceSlider extends Component {
   };
   
   handleChangeComplete = () => {
-    console.log('Change event completed')
   };
   
   render () {

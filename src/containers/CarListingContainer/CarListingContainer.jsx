@@ -55,7 +55,6 @@ class CarListingContainer extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log('state', state)
   const carListings = carListingHelper(state).getVehicles;
   const isGettingCarListings = carListingHelper(state).isGettingCarListings;
   const pageCount = carListingHelper(state).getPageCount;

@@ -1,13 +1,13 @@
-import {ACTION_TYPES as actionTypes} from "../actions/carListings/actions";
+import {ACTION_TYPES as actionTypes} from "../actions/carDetails/actions";
 
-function carDetailInitialState() {
+function carDetailsInitialState() {
   return {
     isGetting: false,
     carDetails: {}
   }
 }
 
-export default function carDetailsReducer(state = carDetailInitialState(), action) {
+export default function carDetailsReducer(state = carDetailsInitialState(), action) {
   switch (action.type){
     case actionTypes.DID_BEGIN_GETTING:
       return Object.assign({}, state, {

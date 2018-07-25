@@ -1,25 +1,18 @@
 import {get} from 'lodash';
 
 
-function getCarDetail(state) {
-  return get(state, 'carDetail');
+function getCarDetails(state) {
+  return get(state, 'carDetails');
 }
-function getCarDetail2(state) {
-  return get(getCarDetail(state), 'carDetail');
+function getCarDetails2(state) {
+  return get(getCarDetails(state), 'carDetails');
 }
-function getData(state) {
-  return get(getCarDetail2(state), 'data')
-}
-function getDetail(state) {
-  return get(getData(state), 'vehicles')
-}
-function isGettingCarDetail(state) {
-  return get(getCarDetail(state), 'isGetting')
+function getVehicleDetails(state) {
+  return get(getCarDetails2(state), 'vehicle')
 }
 
-export default function carListingHelper(state) {
+export default function carDetailHelper(state) {
   return{
-    getDetail: getDetail(state),
-    isGettingCarListings: isGettingCarDetail(state),
+    getVehicleDetails: getVehicleDetails(state),
   };
 }
