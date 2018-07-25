@@ -3,7 +3,7 @@ import {ACTION_TYPES as actionTypes} from "../actions/carListings/actions";
 function carDetailInitialState() {
   return {
     isGetting: false,
-    carListings: {}
+    carDetails: {}
   }
 }
 

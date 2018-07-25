@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {get} from "lodash";
 import {getCarDetails} from "../../actions/carDetails/actions";
 import BasicLoadingView from "../../common/BasicLoadingView/BasicLoadingView";
+import ListingPageDetailPod from "../../components/ListingPageDetailPod/ListingPageDetailPod";
 
 class CarDetailPage extends Component {
   state = {
@@ -17,23 +18,25 @@ class CarDetailPage extends Component {
     this.setState({loading: true});
     await dispatch(getCarDetails(vin));
     this.setState({loading: false});
-  
   };
   
   render() {
-    const {vin} = this.props;
+    const {vin, vehicle} = this.props;
     const {loading} = this.state;
     
     if(loading) return <BasicLoadingView/>
     return(
       <div className='car-detail-page'>
-        {vin}
+        <div>{vin}</div>
+        <ListingPageDetailPod vehicle={vehicle}/>
       </div>
     )
   }
 }
 function mapStateToProps(state, ownProps) {
   const vin = get(ownProps, "match.params.vin");
+  console.log('CarDetailPage', state);
+  
   
   return {vin}
 }

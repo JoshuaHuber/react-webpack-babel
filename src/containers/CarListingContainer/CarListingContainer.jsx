@@ -5,6 +5,9 @@ import {connect} from "react-redux";
 import {getListings} from "../../actions/carListings/actions";
 import carListingHelper from "../../storeHelper/carListingHelper";
 import Pagination from "../../common/Pagination/Pagination";
+import RoutesService from "../../RoutesService";
+import {push} from "react-router-redux"
+import { withRouter } from 'react-router-dom'
 
 class CarListingContainer extends Component {
   state = {
@@ -30,14 +33,16 @@ class CarListingContainer extends Component {
     
     this.setState({currentPage: prevPage});
   };
-  
+  handleVehicleClick = (vin) => {
+    this.props.history.push(RoutesService.vinPath(vin))
+  };
   render() {
     const {carListings, pageCount} = this.props;
     const {currentPage} = this.state;
     
     const vehicaleDetailPodXml = map(carListings, (vehicle, i) => {
       return(
-        <ListingPageDetailPod vehicle={vehicle} key={i}/>
+        <ListingPageDetailPod vehicle={vehicle} key={i} handleVehicleClick={this.handleVehicleClick}/>
       )
     });
     return(
@@ -62,4 +67,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarListingContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CarListingContainer));

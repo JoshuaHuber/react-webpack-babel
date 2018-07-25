@@ -18,7 +18,8 @@ const ListingPageDetailPod = (props) => {
   const condition = vehicleHelper(vehicle).condition;
   
   return(
-    <div className='listing-page-detail-pod' onClick={handleVehicleClick}>
+    //TODO prototype for homepage only.  Need to create another detail page component.  onClick only for homepage.
+    <div className='listing-page-detail-pod' onClick={handleVehicleClick ? () => handleVehicleClick(vin) : () => {}}>
       <div className='image-container'>
         <Checkbox handleClick={()=> {}}/>
         <img src={primaryImage} alt=""/>
@@ -48,7 +49,7 @@ const ListingPageDetailPod = (props) => {
 
 ListingPageDetailPod.propTypes = {
   vehicle: PropTypes.object.isRequired,
-  handleVehicleClick: PropTypes.func.isRequired
+  handleVehicleClick: PropTypes.func
 };
 
 export default ListingPageDetailPod;
