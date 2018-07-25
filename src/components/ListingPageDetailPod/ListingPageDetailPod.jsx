@@ -4,9 +4,10 @@ import {head} from 'lodash';
 import vehicleHelper from "../../model/vehicleHelper";
 import Checkbox from "../../common/CheckBox/CheckBox";
 import PriceSlider from "../../common/PriceSlider/PriceSlider";
+import PropTypes from 'prop-types';
 
 const ListingPageDetailPod = (props) => {
-  const {vehicle} = props;
+  const {vehicle, handleVehicleClick} = props;
   
   const model = vehicleHelper(vehicle).model;
   const make = vehicleHelper(vehicle).make;
@@ -17,7 +18,7 @@ const ListingPageDetailPod = (props) => {
   const condition = vehicleHelper(vehicle).condition;
   
   return(
-    <div className='listing-page-detail-pod'>
+    <div className='listing-page-detail-pod' onClick={handleVehicleClick}>
       <div className='image-container'>
         <Checkbox handleClick={()=> {}}/>
         <img src={primaryImage} alt=""/>
@@ -38,12 +39,16 @@ const ListingPageDetailPod = (props) => {
           condition
           ? <div className="condition">CONDITION: {condition}</div>
           : null
-  
         }
         </div>
       <PriceSlider listPrice={15000} minPrice={12680}/>
     </div>
   )
+};
+
+ListingPageDetailPod.propTypes = {
+  vehicle: PropTypes.object.isRequired,
+  handleVehicleClick: PropTypes.func.isRequired
 };
 
 export default ListingPageDetailPod;
