@@ -39,7 +39,6 @@ class CarDetailPage extends Component {
 function mapStateToProps(state, ownProps) {
   const vin = get(ownProps, "match.params.vin");
   const vehicle = carDetailHelper(state).getVehicleDetails;
-  console.log(state, vehicle)
   return {vin, vehicle}
 }
 function mapDispatchToProps(dispatch) {
