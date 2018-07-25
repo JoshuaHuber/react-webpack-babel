@@ -11,13 +11,14 @@ const Pagination = (props) => {
     <div className={`pagination ${className || ''}`}>
       {
         currentPage === 1
-        ? null
+        ? <span>&nbsp;</span>
         : <Button handleButtonClick={handleBackClick} name={'back'} className='orange'/>
       }
+      <span>Page: {currentPage}</span>
       {
         currentPage === pageCount
-          ? null
-          : <Button handelButtonClick={handleNextClick} name={'next'} className='orange'/>
+          ? <span>&nbsp;</span>
+          : <Button handleButtonClick={handleNextClick} name={'next'} className='orange'/>
       }
     </div>
   )

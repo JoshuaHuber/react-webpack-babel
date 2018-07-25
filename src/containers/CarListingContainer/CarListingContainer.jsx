@@ -8,8 +8,8 @@ import Pagination from "../../common/Pagination/Pagination";
 
 class CarListingContainer extends Component {
   state = {
-    currentPage: 1,
-  };
+    currentPage: 1
+  }
   
   componentDidMount() {
     this.loadData()
@@ -18,22 +18,17 @@ class CarListingContainer extends Component {
     const {dispatch} = this.props;
     dispatch(getListings(1))
   };
-  handleBackClick = () => {
-    const {dispatch} = this.props;
-    const {currentPage} = this.state;
-    const {nextPage} = currentPage + 1;
-    
-    dispatch(getListings(nextPage));
-    this.setState({currentPage: nextPage});
-  };
   handleNextClick = () => {
     const {dispatch} = this.props;
     const {currentPage} = this.state;
-    const {prevPage} = currentPage - 1;
+    const nextPage = currentPage + 1;
+    this.setState({currentPage: nextPage}, () => dispatch(getListings(nextPage)));
+  };
+  handleBackClick = () => {
+    const {currentPage} = this.state;
+    const prevPage = currentPage - 1;
     
-    dispatch(getListings(prevPage));
     this.setState({currentPage: prevPage});
-  
   };
   
   render() {
@@ -48,7 +43,7 @@ class CarListingContainer extends Component {
     return(
       <div className='car-lsiting-container'>
         {vehicaleDetailPodXml}
-        {/*each call of endpoint returns same json*/}
+        {/*each call returns same json*/}
         <Pagination currentPage={currentPage} pageCount={pageCount} handleBackClick={this.handleBackClick} handleNextClick={this.handleNextClick} />
       </div>
     )
