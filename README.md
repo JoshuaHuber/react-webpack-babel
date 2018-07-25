@@ -1,3 +1,36 @@
+Fair Interview Take Home Coding Challenge
+
+Bootstrapped from https://github.com/ReactJSResources/react-webpack-babel
+
+Run with:  npm run dev
+
+
+This was a super fun challenge for me.  Most take home tests are not as detailed.  I would love to get some feedback on my work if you have a moment.
+
+I'll likely keep working on the app to make it better.
+
+Thanks again,
+
+Josh
+
+
+With real data sets I would organize data better.  TODO: Probably normalizing using vin numbers.
+
+TODO: Given more time I would handle some of the lagging ux issues. And I would have created a CarDetailPod to look like reference2.png;
+
+TODO: Some naming convention issues:  I would go back and rewrite the components/functions/css using Vehicle vs Car
+
+TODO: Add Layout Header/Footer to all pages from parent container.
+
+
+
+
+
+
+
+
+
+
 
 <p align="center">
     <h3 align="center">Simple React Webpack Babel Starter Kit<br></h3>
