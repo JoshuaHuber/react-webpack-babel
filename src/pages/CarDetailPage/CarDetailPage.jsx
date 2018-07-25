@@ -5,6 +5,8 @@ import {getCarDetails} from "../../actions/carDetails/actions";
 import BasicLoadingView from "../../common/BasicLoadingView/BasicLoadingView";
 import ListingPageDetailPod from "../../components/ListingPageDetailPod/ListingPageDetailPod";
 import carDetailHelper from "../../storeHelper/carDetailHelper";
+import Header from "../../layout/Header/Header";
+import Footer from "../../layout/Footer/Footer";
 
 class CarDetailPage extends Component {
   state = {
@@ -26,11 +28,15 @@ class CarDetailPage extends Component {
     
     if(loading) return <BasicLoadingView/>
     
-    if(!vehicle) return <div className='none-found'>no vehicle found</div>
+    if(!vehicle) return <div>
+                          <Header/>
+                          <div className='none-found'>no vehicle found</div>
+                        </div>
     //TODO code Detail component
     
     return(
       <div className='car-detail-page'>
+        <Header/>
         <ListingPageDetailPod vehicle={vehicle}/>
       </div>
     )

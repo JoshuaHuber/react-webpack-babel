@@ -10,7 +10,7 @@ class Header extends Component {
         <Logo/>
         <div className='nav-container'>
             <span><Link to="/">Home</Link></span>
-            <span><Link to="/about">About</Link></span>
+            <span><a href='https://joshuahuber.com/' rel='noopener noreferrer' target='_blank'>About</a></span>
         </div>
       </div>
     )

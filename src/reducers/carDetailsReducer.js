@@ -19,7 +19,10 @@ export default function carDetailsReducer(state = carDetailsInitialState(), acti
         carDetails: action.carDetails
       });
       case actionTypes.DID_NOT_FIND_DETAILS:
-      return Object.assign({}, state, {carDetailsInitialState()});
+      return Object.assign({}, state, {
+        isGetting: false,
+        carDetails: {}
+      });
     default:
       return state
   }
